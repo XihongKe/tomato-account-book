@@ -1,0 +1,15 @@
+/* miniprogram/pages/addAccount/addAccount.wxss */
+.navigate-btn {
+  border: 1px solid #ccc;
+}
+
+.btn-area{
+  width: 80%;
+  margin: 50rpx auto 0 auto;
+}
+
+.mini-btn {
+  margin-top: 10rpx;
+  margin-bottom: 10rpx;
+  margin-right: 10rpx;
+}

@@ -1,4 +1,4 @@
-// pages/addAccount/debitCard.js
+// pages/addAccount/debitCard/creditCard.js
 Page({
 
     /**

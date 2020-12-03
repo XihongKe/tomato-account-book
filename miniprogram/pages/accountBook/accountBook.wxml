@@ -2,37 +2,43 @@
 <wxs module="filters" src="../../wxses/toFix.wxs"></wxs>
 
 <view class="container">
-	<view class="overview">
+    <view class="overview">
 
-		<view class="net-assets">
-			<text>净资产：\n</text>
-			<text class='big'>{{filters.toFix(netAssets)}}</text>
-		</view>
+        <view class="net-assets">
+            <text>净资产：\n</text>
+            <text class='big'>{{filters.toFix(netAssets)}}</text>
+        </view>
 
-    <view class="other-assets">
-      <text>负债：{{filters.toFix(debtAssets)}} 总资产：{{filters.toFix(totalAssets)}}</text>
+        <view class="other-assets">
+            <text>负债：{{filters.toFix(debtAssets)}} 总资产：{{filters.toFix(totalAssets)}}</text>
+        </view>
     </view>
-	</view>
 
-  <view class="subtitle">
-    <text>我的账户</text>
-  </view>
+    <view class="subtitle">
+        <text>我的账户</text>
+    </view>
 
-  <!-- 账户列表 -->
-  <view class="account-item" wx:for="{{accountList}}" wx:key="idx">
-    <account-item account-data="{{item}}"></account-item>
-  </view>
+    <!-- 账户列表 -->
+    <view class="account-item" wx:for="{{accountList}}" wx:key="idx">
+        <account-item account-data="{{item}}"></account-item>
+    </view>
 
-  <!-- 添加账户 -->
-  <view class="add-account">
-    <navigator url="../addAccount/addAccount" open-type="navigate" class="">
-      <button type="primary">添加账户</button>
-    </navigator>
-  </view>
+    <!-- 添加账户 -->
+    <view class="add-account">
+        <navigator url="../addAccount/addAccount" open-type="navigate" class="">
+            <button type="primary">添加账户</button>
+        </navigator>
+    </view>
 
-  <view class="subtitle">
-    <text>我的借款</text>
-  </view>
+    <view class="add-account">
+        <navigator url="../addAccount/addAccount" open-type="navigate" class="">
+            <button type="primary">添加账户</button>
+        </navigator>
+    </view>
+
+    <view class="subtitle">
+        <text>我的借款</text>
+    </view>
 
 
 </view>

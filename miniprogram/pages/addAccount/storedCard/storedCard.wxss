@@ -1,5 +1,5 @@
 /* miniprogram/pages/addAccount/debitCard.wxss */
 
 .page-section-title {
-  margin-top: 30rpx;
+    margin-top: 30rpx;
 }

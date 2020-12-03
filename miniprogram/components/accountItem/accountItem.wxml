@@ -2,11 +2,11 @@
 
 
 <view class="row" bindtap="toggleShowList">
-  <text>{{accountData.name}}：{{accountData.total}}</text>
+    <text>{{accountData.name}}：{{accountData.total}}</text>
 </view>
 
 <view class="list" wx:if="{{isShowList}}" wx:for="{{accountData.childAccountList}}" wx:key="idx" wx:for-item="value">
-  <view class="row" bindtap="{{accountEdit(value.id)}}">
-    <text>{{value.name}}：{{value.total}}</text>
-  </view>
+    <view class="row" bindtap="{{accountEdit(value.id)}}">
+        <text>{{value.name}}：{{value.total}}</text>
+    </view>
 </view>

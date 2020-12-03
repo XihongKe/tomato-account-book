@@ -20,6 +20,7 @@ Page({
   onLoad: function (options) {
     this.setData({"id" : _.get(options, "id", "")});
     this.setData({"name" : _.get(options, "name", "")});
+    this.setData({"quota" : _.get(options, "quota", "")});
     this.setData({"total" : _.get(options, "total", "")});
   },
 

@@ -24,7 +24,7 @@ Page({
   },
 
   onSave: function(){
-    if(this.data.total == "" || this.data.quota == "" || this.name == ""){
+    if(this.data.total == "" || this.name == ""){
       return wx.showToast({
         title: '请检查数据是否正确填写',
       })
@@ -35,8 +35,7 @@ Page({
         accountItemId: this.data.id,
         name: this.data.name,
         total: this.data.total,
-        quota: this.data.quota,
-        type: "credit-card",
+        type: "stored-card",
       },
       success: res => {
         wx.showToast({

@@ -16,14 +16,23 @@ exports.main = async (event, context) => {
   const wxContext = cloud.getWXContext()
   const db = cloud.database()
   let accountItemId = event.accountItemId
-  let data = {
-    name: event.name,
-    total: event.total,
-    type: event.type
-  }
-  switch (data.type) {
+  let data = {}
+  switch (event.type) {
     case "credit-card":
-      data.quota = event.quota;
+      data = {
+        name: event.name,
+        total: event.total,
+        type: event.type,
+        quota: event.quota
+      }
+      break;
+    case "debit-card":
+    case "stored-card":
+      data = {
+        name: event.name,
+        total: event.total,
+        type: event.type
+      }
       break;
   }
 

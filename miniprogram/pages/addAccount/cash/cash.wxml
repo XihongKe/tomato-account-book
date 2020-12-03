@@ -1,0 +1,28 @@
+<!--miniprogram/pages/addAccount/debitCard.wxml-->
+<view>
+	<form catchsubmit="onSave">
+		<view class="page-section">
+			<view class="page-section-title">银行名称</view>
+			<view class="weui-cells weui-cells_after-title">
+				<view class="weui-cell weui-cell_input">
+					<view class="weui-cell__bd" style="margin: 30rpx 0">
+						<input type="text" model:value="{{name}}" class="weui-input" name="name" placeholder="请输入银行名称" />
+					</view>
+				</view>
+			</view>
+
+      <view class="page-section-title">余额</view>
+			<view class="weui-cells weui-cells_after-title">
+				<view class="weui-cell weui-cell_input">
+					<view class="weui-cell__bd" style="margin: 30rpx 0">
+						<input type="digit" model:value="{{total}}" class="weui-input" name="total" placeholder="请输入余额" />
+					</view>
+				</view>
+			</view>
+
+      <view class="btn-area">
+        <button style="margin: 30rpx auto" type="primary" formType="submit">保存</button>
+      </view>
+		</view>
+	</form>
+</view>

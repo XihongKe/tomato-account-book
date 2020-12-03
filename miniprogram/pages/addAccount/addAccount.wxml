@@ -9,6 +9,8 @@
 	<navigator url="./storedCard/storedCard" open-type="navigate" class="navigate-btn">
 		<button>储值卡</button>
 	</navigator>
-	<button class="mini-btn online-paid" url="" type="default" size="mini">在线支付</button>
+	<navigator url="./onlinePaid/onlinePaid" open-type="navigate" class="navigate-btn">
+		<button>在线支付</button>
+	</navigator>
 	<button class="mini-btn cash" type="default" size="mini">现金</button>
 </view>

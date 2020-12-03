@@ -28,6 +28,7 @@ exports.main = async (event, context) => {
       break;
     case "debit-card":
     case "stored-card":
+    case "online-paid":
       data = {
         name: event.name,
         total: event.total,

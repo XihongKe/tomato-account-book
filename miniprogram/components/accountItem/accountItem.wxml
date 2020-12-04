@@ -1,12 +1,20 @@
 <!--components/accountItem.wxml-->
 
 
-<view class="row" bindtap="toggleShowList">
+<view class="row row-big" bindtap="toggleShowList">
     <text>{{accountData.name}}：{{accountData.total}}</text>
 </view>
 
 <view class="list" wx:if="{{isShowList}}" wx:for="{{accountData.childAccountList}}" wx:key="idx" wx:for-item="value">
-    <view class="row" bindtap="{{accountEdit(value.id)}}">
+    <view class="row row-sm" bindtap="accountEdit"
+          data-type="{{value.type}}"
+          data-id="{{value._id}}"
+          data-name="{{value.name}}"
+          data-total="{{value.total}}"
+          data-quota="{{value.quota}}"
+    >
         <text>{{value.name}}：{{value.total}}</text>
     </view>
 </view>
+
+<view class="bar"></view>

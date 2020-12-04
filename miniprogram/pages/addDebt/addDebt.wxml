@@ -1,0 +1,8 @@
+<view class="btn-area">
+    <navigator url="./receivable/receivable" open-type="navigate" class="navigate-btn">
+        <button>应收款</button>
+    </navigator>
+    <navigator url="./payable/payable" open-type="navigate" class="navigate-btn">
+        <button>应付账</button>
+    </navigator>
+</view>

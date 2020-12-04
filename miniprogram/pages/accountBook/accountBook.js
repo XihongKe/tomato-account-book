@@ -53,13 +53,30 @@ Page({
     },
 
     getAccountBook: function () {
+        this.setData({
+            totalAssets: 0.00,
+            netAssets: 0.00,
+            debtAssets: 0.00,
+            accountList: [],
+            debtOut: 0.00,
+            debtIn: 0.00,
+        })
         wx.cloud.callFunction({
             name: "accountBookGet",
             data: {},
             success: res => {
+                if (res.result.code !== 0) {
+                    return wx.hideLoading({
+                        complete: () => {
+                            wx.showToast({
+                                title: res.result.msg,
+                            })
+                        },
+                    })
+                }
                 console.log("成功调用accountBookGet");
                 console.log(res);
-                this.setData(res.data);
+                this.setData(res.result.data);
                 wx.hideLoading({
                     complete: (res) => {
                     },

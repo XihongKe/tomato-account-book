@@ -31,8 +31,8 @@
     </view>
 
     <view class="add-account">
-        <navigator url="../addAccount/addAccount" open-type="navigate" class="">
-            <button type="primary">添加账户</button>
+        <navigator url="../addDebt/addDebt" open-type="navigate" class="">
+            <button type="primary">添加欠款</button>
         </navigator>
     </view>
 

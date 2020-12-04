@@ -3,14 +3,6 @@ const cloud = require('wx-server-sdk')
 
 cloud.init()
 
-function guid() {
-  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-    var r = Math.random() * 16 | 0,
-      v = c == 'x' ? r : (r & 0x3 | 0x8);
-    return v.toString(16);
-  });
-}
-
 // 云函数入口函数
 exports.main = async (event, context) => {
   const wxContext = cloud.getWXContext()
@@ -20,6 +12,7 @@ exports.main = async (event, context) => {
   switch (event.type) {
     case "credit-card":
       data = {
+        _openid: wxContext.OPENID,
         name: event.name,
         total: event.total,
         type: event.type,
@@ -30,7 +23,10 @@ exports.main = async (event, context) => {
     case "stored-card":
     case "online-paid":
     case "cash":
+    case "receivable":
+    case "payable":
       data = {
+        _openid: wxContext.OPENID,
         name: event.name,
         total: event.total,
         type: event.type

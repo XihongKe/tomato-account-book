@@ -1,4 +1,4 @@
-// pages/addAccount/debitCard/creditCard.js
+// miniprogram/pages/addDebt/addDebt.js
 Page({
 
     /**

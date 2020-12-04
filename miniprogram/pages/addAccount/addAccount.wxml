@@ -1,4 +1,3 @@
-<!--miniprogram/pages/addAccount/addAccount.wxml-->
 <view class="btn-area">
     <navigator url="./debitCard/debitCard" open-type="navigate" class="navigate-btn">
         <button>储蓄卡</button>

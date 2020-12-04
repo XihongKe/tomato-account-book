@@ -16,6 +16,8 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
+        console.log("进入编辑页")
+        console.log(options)
         this.setData({"id": _.get(options, "id", "")});
         this.setData({"name": _.get(options, "name", "")});
         this.setData({"total": _.get(options, "total", "")});
@@ -27,6 +29,7 @@ Page({
                 title: '请输入银行名称和余额',
             })
         }
+        let id = this.data.id
         wx.cloud.callFunction({
             name: 'accountBookSave',
             data: {
@@ -42,9 +45,9 @@ Page({
                     duration: 1000,
                     complete: function () {
                         setTimeout(() => {
-                            wx.redirectTo({
-                                url: "/pages/accountBook/accountBook"
-                            })
+                            wx.reLaunch({
+  url: '/pages/accountBook/accountBook'
+})
                         }, 1000);
                     }
                 })

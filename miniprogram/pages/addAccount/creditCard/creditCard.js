@@ -32,6 +32,7 @@ Page({
                 title: '请检查数据是否正确填写',
             })
         }
+        let id = this.data.id
         wx.cloud.callFunction({
             name: 'accountBookSave',
             data: {
@@ -48,9 +49,9 @@ Page({
                     duration: 1000,
                     complete: function () {
                         setTimeout(() => {
-                            wx.redirectTo({
-                                url: "/pages/accountBook/accountBook"
-                            })
+                            wx.reLaunch({
+  url: '/pages/accountBook/accountBook'
+})
                         }, 1000);
                     }
                 })

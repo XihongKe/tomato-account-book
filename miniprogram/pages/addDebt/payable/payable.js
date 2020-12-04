@@ -1,4 +1,3 @@
-// miniprogram/pages/addAccount/debitCard.js
 import _ from "../../../lib/lodash.min"
 
 Page({
@@ -8,12 +7,8 @@ Page({
      */
     data: {
         total: 0.00,
-        quota: 0.00,
         name: "",
         id: ""
-    },
-
-    bindinput: function () {
     },
 
     /**
@@ -26,7 +21,7 @@ Page({
     },
 
     onSave: function () {
-        if (this.data.total == "" || this.name == "") {
+        if (this.data.name === "" || this.data.total == 0) {
             return wx.showToast({
                 title: '请检查数据是否正确填写',
             })
@@ -38,7 +33,7 @@ Page({
                 accountItemId: this.data.id,
                 name: this.data.name,
                 total: this.data.total,
-                type: "online-paid",
+                type: 'payable'
             },
             success: res => {
                 wx.showToast({
@@ -60,6 +55,10 @@ Page({
                 console.log(err);
             }
         });
+    },
+
+    bindinput: function () {
+
     },
 
     /**

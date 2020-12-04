@@ -50,8 +50,8 @@ Page({
                     complete: function () {
                         setTimeout(() => {
                             wx.reLaunch({
-  url: '/pages/accountBook/accountBook'
-})
+                                url: '/pages/accountBook/accountBook'
+                            })
                         }, 1000);
                     }
                 })

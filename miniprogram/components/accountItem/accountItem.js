@@ -38,7 +38,7 @@ Component({
             let name = _.get(event, "currentTarget.dataset.name", "")
             let quota = _.get(event, "currentTarget.dataset.quota", 0.00)
             let path = "";
-            switch (type){
+            switch (type) {
                 case "debit-card":
                     path = "addAccount/debitCard/debitCard"
                     break;
@@ -61,7 +61,7 @@ Component({
                     path = "addDebt/receivable/receivable";
                     break;
             }
-            console.log("开始跳转，url=" + "../../pages/" + path + "?id=" + id + "&type=" + type + "&name" + name + "&total=" + total + "&quota=" + quota );
+            console.log("开始跳转，url=" + "../../pages/" + path + "?id=" + id + "&type=" + type + "&name" + name + "&total=" + total + "&quota=" + quota);
             wx.navigateTo({
                 url: "../../pages/" + path + "?id=" + id + "&type=" + type + "&name=" + name + "&total=" + total + "&quota=" + quota
             })

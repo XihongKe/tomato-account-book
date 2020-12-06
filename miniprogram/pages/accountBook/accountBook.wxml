@@ -10,7 +10,7 @@
         </view>
 
         <view class="other-assets">
-            <text>负债：{{filters.toFix(debtAssets)}} 总资产：{{filters.toFix(totalAssets)}}</text>
+            <text>总资产：{{filters.toFix(totalAssets)}} 负债：{{filters.toFix(debtAssets)}}</text>
         </view>
     </view>
 
@@ -34,10 +34,6 @@
         <navigator url="../addDebt/addDebt" open-type="navigate" class="">
             <button type="primary">添加欠款</button>
         </navigator>
-    </view>
-
-    <view class="subtitle">
-        <text>我的借款</text>
     </view>
 
 

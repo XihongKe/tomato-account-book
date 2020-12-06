@@ -22,6 +22,7 @@
 
             <view class="btn-area">
                 <button style="margin: 30rpx auto" type="primary" formType="submit">保存</button>
+                <button wx:if="{{id}}" style="margin: 30rpx auto" type="warn" bindtap="onDel">删除</button>
             </view>
         </view>
     </form>

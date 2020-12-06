@@ -30,8 +30,6 @@ Component({
         },
         //跳转到资产编辑页
         accountEdit: function (event) {
-            console.log("触发事件");
-            console.log(event);
             let id = _.get(event, "currentTarget.dataset.id", "")
             let type = _.get(event, "currentTarget.dataset.type", "debit-card")
             let total = _.get(event, "currentTarget.dataset.total", 0.00)

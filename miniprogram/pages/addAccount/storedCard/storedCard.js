@@ -26,7 +26,12 @@ Page({
     },
 
     onSave: function () {
+        wx.showLoading({
+            title: "加载中",
+            mask: true,
+        });
         if (this.data.total == "" || this.name == "") {
+            wx.hideLoading();
             return wx.showToast({
                 title: '请检查数据是否正确填写',
             })
@@ -41,10 +46,12 @@ Page({
                 type: "stored-card",
             },
             success: res => {
+                wx.hideLoading();
                 wx.showToast({
                     title: '保存成功',
                     icon: "success",
                     duration: 1000,
+                    mask: true,
                     complete: function () {
                         setTimeout(() => {
                             wx.reLaunch({
@@ -56,10 +63,61 @@ Page({
                 console.log(res);
             },
             fail: err => {
+                wx.hideLoading();
+                wx.showToast({
+                        title: '保存失败:' + _.get(err, "result.data.msg", "服务器故障"),
+                        icon: "none",
+                        duration: 1000,
+                    }
+                );
                 console.log("调用失败");
                 console.log(err);
             }
         });
+    },
+
+    onDel: function() {
+        let id = this.data.id
+        wx.showModal({
+            title: "确认删除吗？",
+            content: "删除后数据无法恢复",
+            success: function(confirm){
+                if (!confirm){
+                    return;
+                }
+                wx.cloud.callFunction({
+                    name: "accountBookDel",
+                    data: {
+                        accountItemId: id
+                    },
+                    success: res => {
+                        if (res.result.code !== 0){
+                            return wx.showToast({
+                                title: _.get(res, "result.msg", "服务器故障"),
+                                icon: "none"
+                            })
+                        }
+                        wx.showToast({
+                            title: "删除成功",
+                            icon: "success",
+                            duration: 1000,
+                            complete: function(){
+                                setTimeout(() => {
+                                    wx.reLaunch({
+                                        url: "/pages/accountBook/accountBook"
+                                    })
+                                }, 1000)
+                            }
+                        })
+                    },
+                    fail: err => {
+                        console.log("调用失败");
+                        console.log(err);
+                    }
+                })
+            }
+        })
+
     },
 
     /**

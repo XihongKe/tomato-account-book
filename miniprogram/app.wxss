@@ -175,4 +175,5 @@ page {
 
 .page-section-title {
     margin-top: 30rpx;
+    text-indent: 40rpx;
 }

@@ -9,7 +9,7 @@
         <button>储值卡</button>
     </navigator>
     <navigator url="./onlinePaid/onlinePaid" open-type="navigate" class="navigate-btn">
-        <button>在线支付</button>
+        <button>线上账户</button>
     </navigator>
     <navigator url="./cash/cash" open-type="navigate" class="navigate-btn">
         <button>现金</button>

@@ -20,10 +20,10 @@ const dealDebitCard = function(data){
       continue;
     }
     accountItem.childAccountList.push(data[i])
-    accountItem.total = saveAdd(accountItem.total, parseFloat(data[i].total))
+    accountItem.total = safeAdd(accountItem.total, parseFloat(data[i].total))
   }
   response.accountList.push(accountItem)
-  response.totalAssets = saveAdd(response.totalAssets, accountItem.total)
+  response.totalAssets = safeAdd(response.totalAssets, accountItem.total)
 }
 
 /**
@@ -42,10 +42,10 @@ const dealCreditCard = function(data){
       continue;
     }
     accountItem.childAccountList.push(data[i])
-    accountItem.total = saveAdd(accountItem.total, parseFloat(data[i].total))
+    accountItem.total = safeAdd(accountItem.total, parseFloat(data[i].total))
   }
   response.accountList.push(accountItem)
-  response.netAssets = saveAdd(response.netAssets, accountItem.total)
+  response.debtAssets = safeAdd(response.debtAssets, accountItem.total)
 }
 
 /**
@@ -64,10 +64,10 @@ const dealStoredCard = function(data){
       continue;
     }
     accountItem.childAccountList.push(data[i])
-    accountItem.total = saveAdd(accountItem.total, parseFloat(data[i].total))
+    accountItem.total = safeAdd(accountItem.total, parseFloat(data[i].total))
   }
   response.accountList.push(accountItem)
-  response.totalAssets = saveAdd(response.totalAssets, accountItem.total)
+  response.totalAssets = safeAdd(response.totalAssets, accountItem.total)
 }
 
 /**
@@ -86,20 +86,20 @@ const dealCash = function(data){
       continue;
     }
     accountItem.childAccountList.push(data[i])
-    accountItem.total = saveAdd(accountItem.total, parseFloat(data[i].total))
+    accountItem.total = safeAdd(accountItem.total, parseFloat(data[i].total))
   }
   response.accountList.push(accountItem)
-  response.totalAssets = saveAdd(response.totalAssets, accountItem.total)
+  response.totalAssets = safeAdd(response.totalAssets, accountItem.total)
 }
 
 /**
- * 处理在线支付
+ * 处理线上账户
  * @param data
  */
 const dealOnlinePaid = function(data){
   let accountItem = {
     childAccountList: [],
-    name: "在线支付",
+    name: "线上账户",
     total: 0
   };
 
@@ -108,20 +108,20 @@ const dealOnlinePaid = function(data){
       continue;
     }
     accountItem.childAccountList.push(data[i])
-    accountItem.total = saveAdd(accountItem.total, parseFloat(data[i].total))
+    accountItem.total = safeAdd(accountItem.total, parseFloat(data[i].total))
   }
   response.accountList.push(accountItem)
-  response.totalAssets = saveAdd(response.totalAssets, accountItem.total)
+  response.totalAssets = safeAdd(response.totalAssets, accountItem.total)
 }
 
 /**
- * 处理应收款
+ * 处理借出
  * @param data
  */
 const dealReceivable = function(data){
   let accountItem = {
     childAccountList: [],
-    name: "应收款",
+    name: "借出",
     total: 0
   };
 
@@ -130,20 +130,20 @@ const dealReceivable = function(data){
       continue;
     }
     accountItem.childAccountList.push(data[i])
-    accountItem.total = saveAdd(accountItem.total, parseFloat(data[i].total))
+    accountItem.total = safeAdd(accountItem.total, parseFloat(data[i].total))
   }
   response.accountList.push(accountItem)
-  response.debtOut = saveAdd(response.debtOut, accountItem.total)
+  response.debtOut = safeAdd(response.debtOut, accountItem.total)
 }
 
 /**
- * 处理应支付
+ * 处理借入
  * @param data
  */
 const dealPayable = function(data){
   let accountItem = {
     childAccountList: [],
-    name: "应支付",
+    name: "借入",
     total: 0
   };
 
@@ -152,18 +152,18 @@ const dealPayable = function(data){
       continue;
     }
     accountItem.childAccountList.push(data[i])
-    accountItem.total = saveAdd(accountItem.total, parseFloat(data[i].total))
+    accountItem.total = safeAdd(accountItem.total, parseFloat(data[i].total))
   }
   response.accountList.push(accountItem)
-  response.debtIn = saveAdd(response.debtIn, accountItem.total)
-  response.debtAssets = saveAdd(response.debtAssets, accountItem.total)
+  response.debtIn = safeAdd(response.debtIn, accountItem.total)
+  response.debtAssets = safeAdd(response.debtAssets, accountItem.total)
 }
 
-const saveAdd = function(a, b){
+const safeAdd = function(a, b){
   return (a * 100 + b * 100) / 100;
 }
 
-const saveSub = function(a, b){
+const safeSub = function(a, b){
   return (a * 100 - b * 100) / 100;
 }
 
@@ -187,13 +187,13 @@ exports.main = async (event, context) => {
     console.log("获取数据成功,openid=" + wxContext.OPENID);
     console.log(res);
     dealDebitCard(res.data)
-    dealCreditCard(res.data)
     dealOnlinePaid(res.data)
     dealCash(res.data)
     dealStoredCard(res.data)
+    dealCreditCard(res.data)
     dealReceivable(res.data)
     dealPayable(res.data)
-    response.netAssets = saveSub(response.totalAssets, response.debtAssets)
+    response.netAssets = safeSub(response.totalAssets, response.debtAssets)
     return {
       code: 0,
       msg: "success",

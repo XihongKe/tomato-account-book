@@ -1,10 +1,33 @@
 // 云函数入口文件
 const cloud = require('wx-server-sdk')
+const Joi = require('joi')
 
 cloud.init()
 
 // 云函数入口函数
 exports.main = async (event, context) => {
+  // 验证器
+  const {error, value} = Joi.object().keys({
+    name: Joi.string().min(1, "utf8"),
+    total: Joi.number().positive().precision(2),
+    quota: Joi.number().positive().precision(2),
+    type: Joi.string(),
+    t: Joi.number()
+  }).validate({
+    name: event.name,
+    total: event.total,
+    type: event.type,
+    quota: event.quota,
+    t: "字符串"
+  });
+  console.log(error);
+  console.log(value);
+  if (error !== undefined) {
+    return {
+      code: -1,
+      msg: "参数非法：" + error.message
+    }
+  }
   const wxContext = cloud.getWXContext()
   const db = cloud.database()
   let accountItemId = event.accountItemId
@@ -29,9 +52,14 @@ exports.main = async (event, context) => {
         _openid: wxContext.OPENID,
         name: event.name,
         total: event.total,
-        type: event.type
+        type: event.type,
       }
       break;
+    default:
+      return {
+        code: -1,
+        msg: "账本类型非法"
+      }
   }
 
   //更新

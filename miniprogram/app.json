@@ -22,7 +22,8 @@
   "sitemapLocation": "sitemap.json",
   "style": "v2",
   "usingComponents": {
-    "account-item": "./components/accountItem/accountItem"
+    "account-item": "./components/accountItem/accountItem",
+    "mp-form": "weui-miniprogram/form/form"
   },
   "useExtendedLib": {
     "weui": true

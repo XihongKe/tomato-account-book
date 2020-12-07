@@ -43,6 +43,14 @@ Page({
             },
             success: res => {
                 wx.hideLoading();
+                if (res.result.code !== 0) {
+                    return wx.showToast({
+                            title: res.result.msg,
+                            icon: "none",
+                            duration: 2000,
+                        }
+                    );
+                }
                 wx.showToast({
                     title: '保存成功',
                     icon: "success",

@@ -1,26 +1,19 @@
 <!--index.wxml-->
 <view class="container">
+    <form catchsubmit="onSave">
+        <view class="page-section">
+            <view class="page-section-title">应用密码</view>
+            <view class="weui-cells weui-cells_after-title">
+                <view class="weui-cell weui-cell_input">
+                    <view class="weui-cell__bd" style="margin: 30rpx 0">
+                        <input password="true" type="text" model:value="{{userKey}}" class="weui-input" name="userKey" placeholder="请输入应用密码"/>
+                    </view>
+                </view>
+            </view>
 
-    <!-- 跳转到记账 -->
-    <view class="accountBook">
-        <navigator url="../accountBook/accountBook" open-type="navigate" class="uploader-text">
-            <text>跳转到记账</text>
-        </navigator>
-    </view>
-
-    <!-- 用户 openid -->
-    <view class="userinfo">
-        <button
-                open-type="getUserInfo"
-                bindgetuserinfo="onGetUserInfo"
-                class="userinfo-avatar"
-                style="background-image: url({{avatarUrl}})"
-                size="default"
-        ></button>
-        <view class="userinfo-nickname-wrapper">
-            <button class="userinfo-nickname" bindtap="onGetOpenid">点击获取 openid</button>
+            <view class="btn-area">
+                <button style="margin: 30rpx auto" type="primary" formType="submit">进入</button>
+            </view>
         </view>
-    </view>
-
-
+    </form>
 </view>

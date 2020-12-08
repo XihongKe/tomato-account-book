@@ -1,16 +1,14 @@
-<!--pages/databaseGuide/databaseGuide.wxml-->
-<wxs module="filters" src="../../wxses/toFix.wxs"></wxs>
 
 <view class="container">
     <view class="overview">
 
         <view class="net-assets">
             <text>净资产：\n</text>
-            <text class='big'>{{filters.toFix(netAssets)}}</text>
+            <text class='big'>{{netAssets}}</text>
         </view>
 
         <view class="other-assets">
-            <text>总资产：{{filters.toFix(totalAssets)}} 负债：{{filters.toFix(debtAssets)}}</text>
+            <text>总资产：{{totalAssets}} 负债：{{debtAssets}}</text>
         </view>
     </view>
 
@@ -32,7 +30,7 @@
 
     <view class="add-account">
         <navigator url="../addDebt/addDebt" open-type="navigate" class="">
-            <button type="primary">添加欠款</button>
+            <button type="default">添加欠款</button>
         </navigator>
     </view>
 

@@ -4,9 +4,9 @@ const Joi = require('joi')
 
 cloud.init()
 
-// 云函数入口函数
+// 保存用户账户
 exports.main = async (event, context) => {
-  // 验证器
+  // 校验数据是否合法
   const {error, value} = Joi.object().keys({
     name: Joi.string().min(1, "utf8"),
     total: Joi.number().positive().precision(2),
@@ -28,10 +28,13 @@ exports.main = async (event, context) => {
       msg: "参数非法：" + error.message
     }
   }
+
   const wxContext = cloud.getWXContext()
   const db = cloud.database()
   let accountItemId = event.accountItemId
   let data = {}
+
+  //选择账户类型
   switch (event.type) {
     case "credit-card":
       data = {
@@ -82,6 +85,8 @@ exports.main = async (event, context) => {
       }
     })
   }
+
+  //新增
   return db.collection("accountBooks").add({
     data: data
   }).then(res => {

@@ -1,5 +1,3 @@
-/* pages/databaseGuide/databaseGuide.wxss */
-
 .overview {
     height: auto;
     padding: 5rpx 0 5rpx 40rpx;
@@ -40,4 +38,8 @@
     margin-top: 40rpx;
     font-size: 0.8rem;
     color: #bbb;
+}
+
+.add-account{
+    margin-bottom: 20rpx;
 }

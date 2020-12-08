@@ -1,0 +1,8 @@
+.btn-area navigator {
+    background-color: #f2f2f2;
+    margin-bottom: 20rpx;
+}
+
+.btn-area navigator button {
+    color: #06ae56;
+}

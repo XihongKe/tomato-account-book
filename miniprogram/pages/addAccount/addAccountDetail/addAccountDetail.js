@@ -1,4 +1,6 @@
+// miniprogram/pages/addAccount/debitCard.js
 import _ from "../../../lib/lodash.min"
+import {AccountSetting} from "../../../lib/accountSetting"
 
 Page({
 
@@ -6,39 +8,56 @@ Page({
      * 页面的初始数据
      */
     data: {
-        total: 0.00,
-        name: "",
-        id: ""
+        id: "",
+        type: "",
+        accountSettings: []
+    },
+
+    bindinput: function () {
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
+        this.setData({"type": _.get(options, "type", "")})
         this.setData({"id": _.get(options, "id", "")});
-        this.setData({"name": _.get(options, "name", "")});
-        this.setData({"total": _.get(options, "total", "")});
+        this.setData({"accountSettings": AccountSetting.getSetting(this.data.type).data})
+        for (let index in this.data.accountSettings) {
+            let key = this.data.accountSettings[index].key;
+            this.setData({
+                    ["accountSettings[" + index + "].value"]: _.get(options, key)
+                }
+            )
+        }
+        wx.setNavigationBarTitle({title: AccountSetting.getTypeCN(this.data.type)})
     },
 
-    onSave: function () {
+    onSave: function (event) {
         wx.showLoading({
             title: "加载中",
             mask: true,
         });
-        if (this.data.name === "" || this.data.total == 0) {
-            wx.hideLoading();
-            return wx.showToast({
-                title: '请检查数据是否正确填写',
-            })
+
+        //组装请求体
+        let data = {
+            accountItemId: this.data.id,
+            type: this.data.type
         }
+        for (let i in event.detail.value){
+            if (event.detail.value[i] === undefined){
+                wx.hideLoading();
+                return wx.showToast({
+                    title: '请检查数据是否正确填写',
+                })
+            }
+            data[i] = event.detail.value[i]
+        }
+
+        //发起请求
         wx.cloud.callFunction({
             name: 'accountBookSave',
-            data: {
-                accountItemId: this.data.id,
-                name: this.data.name,
-                total: this.data.total,
-                type: 'payable'
-            },
+            data: data,
             success: res => {
                 wx.hideLoading();
                 if (res.result.code !== 0) {
@@ -52,8 +71,8 @@ Page({
                 wx.showToast({
                     title: '保存成功',
                     icon: "success",
-                    duration: 1000,
                     mask: true,
+                    duration: 1000,
                     complete: function () {
                         setTimeout(() => {
                             wx.reLaunch({
@@ -78,13 +97,13 @@ Page({
         });
     },
 
-    onDel: function() {
+    onDel: function () {
         let id = this.data.id
         wx.showModal({
             title: "确认删除吗？",
             content: "删除后数据无法恢复",
-            success: function(confirm){
-                if (!confirm){
+            success: function (confirm) {
+                if (!confirm) {
                     return;
                 }
                 wx.cloud.callFunction({
@@ -93,7 +112,7 @@ Page({
                         accountItemId: id
                     },
                     success: res => {
-                        if (res.result.code !== 0){
+                        if (res.result.code !== 0) {
                             return wx.showToast({
                                 title: _.get(res, "result.msg", "服务器故障"),
                                 icon: "none"
@@ -103,7 +122,7 @@ Page({
                             title: "删除成功",
                             icon: "success",
                             duration: 1000,
-                            complete: function(){
+                            complete: function () {
                                 setTimeout(() => {
                                     wx.reLaunch({
                                         url: "/pages/accountBook/accountBook"
@@ -119,10 +138,6 @@ Page({
                 })
             }
         })
-
-    },
-
-    bindinput: function () {
 
     },
 

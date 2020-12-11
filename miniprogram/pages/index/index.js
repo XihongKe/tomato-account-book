@@ -8,6 +8,9 @@ Page({
     },
 
     onLoad: function () {
+        return wx.reLaunch({
+            url: '/pages/accountBook/accountBook'
+        })
         this.setData({
             userKey: wx.getStorageSync("index_user_key")
         })

@@ -3,14 +3,8 @@
     "pages/index/index",
     "pages/accountBook/accountBook",
     "pages/addAccount/addAccount",
-    "pages/addAccount/debitCard/debitCard",
-    "pages/addAccount/creditCard/creditCard",
-    "pages/addAccount/storedCard/storedCard",
-    "pages/addAccount/onlinePaid/onlinePaid",
-    "pages/addAccount/cash/cash",
-    "pages/addDebt/addDebt",
-    "pages/addDebt/payable/payable",
-    "pages/addDebt/receivable/receivable"
+    "pages/addAccount/addAccountDetail/addAccountDetail",
+    "pages/addDebt/addDebt"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",

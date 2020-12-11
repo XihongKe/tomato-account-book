@@ -30,38 +30,17 @@ Component({
         },
         //跳转到资产编辑页
         accountEdit: function (event) {
-            let id = _.get(event, "currentTarget.dataset.id", "")
-            let type = _.get(event, "currentTarget.dataset.type", "debit-card")
-            let total = _.get(event, "currentTarget.dataset.total", 0.00)
-            let name = _.get(event, "currentTarget.dataset.name", "")
-            let quota = _.get(event, "currentTarget.dataset.quota", 0.00)
-            let path = "";
-            switch (type) {
-                case "debit-card":
-                    path = "addAccount/debitCard/debitCard"
-                    break;
-                case "credit-card":
-                    path = "addAccount/creditCard/creditCard"
-                    break;
-                case "stored-card":
-                    path = "addAccount/storedCard/storedCard"
-                    break;
-                case "online-paid":
-                    path = "addAccount/onlinePaid/onlinePaid"
-                    break;
-                case "cash":
-                    path = "addAccount/cash/cash"
-                    break;
-                case "payable":
-                    path = "addDebt/payable/payable";
-                    break;
-                case "receivable":
-                    path = "addDebt/receivable/receivable";
-                    break;
+            //拼接url
+            let url = "../../pages/addAccount/addAccountDetail/addAccountDetail";
+            let first = true //用来判断url参数的拼接
+            let dataset = event.currentTarget.dataset
+            for (let i in dataset){
+                url += (first ? "?" : "&") + i + "=" + dataset[i]
+                first = false
             }
-            console.log("开始跳转，url=" + "../../pages/" + path + "?id=" + id + "&type=" + type + "&name" + name + "&total=" + total + "&quota=" + quota);
+            console.log("开始跳转，url=" + url);
             wx.navigateTo({
-                url: "../../pages/" + path + "?id=" + id + "&type=" + type + "&name=" + name + "&total=" + total + "&quota=" + quota
+                url: url
             })
         }
     }

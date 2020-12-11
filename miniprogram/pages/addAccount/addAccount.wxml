@@ -1,17 +1,17 @@
 <view class="btn-area">
-    <navigator url="./debitCard/debitCard" open-type="navigate" class="navigate-btn">
+    <navigator url="./addAccountDetail/addAccountDetail?type=debit-card" open-type="navigate" class="navigate-btn">
         <button>储蓄卡</button>
     </navigator>
-    <navigator url="./creditCard/creditCard" open-type="navigate" class="navigate-btn">
+    <navigator url="./addAccountDetail/addAccountDetail?type=credit-card" open-type="navigate" class="navigate-btn">
         <button>信用卡</button>
     </navigator>
-    <navigator url="./storedCard/storedCard" open-type="navigate" class="navigate-btn">
+    <navigator url="./addAccountDetail/addAccountDetail?type=stored-card" open-type="navigate" class="navigate-btn">
         <button>储值卡</button>
     </navigator>
-    <navigator url="./onlinePaid/onlinePaid" open-type="navigate" class="navigate-btn">
+    <navigator url="./addAccountDetail/addAccountDetail?type=online-paid" open-type="navigate" class="navigate-btn">
         <button>线上账户</button>
     </navigator>
-    <navigator url="./cash/cash" open-type="navigate" class="navigate-btn">
+    <navigator url="./addAccountDetail/addAccountDetail?type=cash" open-type="navigate" class="navigate-btn">
         <button>现金</button>
     </navigator>
 </view>
